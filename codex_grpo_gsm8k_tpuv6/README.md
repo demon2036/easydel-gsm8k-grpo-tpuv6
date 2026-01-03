@@ -6,7 +6,7 @@ Minimal smoke-test to confirm EasyDeL `GRPOTrainer` runs end-to-end on a TPU v6 
 
 ```bash
 git clone https://github.com/demon2036/easydel-gsm8k-grpo-tpuv6.git
-cd easydel-gsm8k-grpo-tpuv6/EasyDeL
+cd easydel-gsm8k-grpo-tpuv6
 
 bash codex_grpo_gsm8k_tpuv6/run_tpu.sh
 ```

@@ -125,6 +125,7 @@ def main() -> None:
         args.model_id,
         auto_shard_model=True,
         sharding_axis_dims=(1, -1, 1, 1, 1),
+        backend="tpu",
         dtype=jnp.bfloat16,
         param_dtype=jnp.bfloat16,
         config_kwargs=ed.EasyDeLBaseConfigDict(

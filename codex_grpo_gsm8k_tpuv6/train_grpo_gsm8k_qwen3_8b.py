@@ -109,7 +109,13 @@ def main() -> None:
     run_dir = Path(args.save_dir) if args.save_dir else (Path(__file__).resolve().parent / "outputs" / "gsm8k_grpo_10steps")
     run_dir.mkdir(parents=True, exist_ok=True)
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model_id)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(args.model_id)
+    except ValueError as exc:
+        if "tiktoken" in str(exc).lower():
+            tokenizer = AutoTokenizer.from_pretrained(args.model_id, use_fast=False)
+        else:
+            raise
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
@@ -170,4 +176,3 @@ def main() -> None:
 if __name__ == "__main__":
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     main()
-
